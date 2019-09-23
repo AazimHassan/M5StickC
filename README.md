@@ -1,1 +1,25 @@
-# M5StickC
+The days are passing by, searching for a good IoT platform that is Opensource and seems something like a wearable, and here it is. Behold, the all new #M5StickC.
+I am a DIY Tinkerer, love to work developing different cool projects with smart features. Everyone loves when something physically smart is in their hand.
+But since quite a long time, I had been searching for an open source hardware, which should have all the features a smart watch used to has. I searched all over the internet, but could not be able to find one. There are many & many of hardware available, but those are either not open source for development, or very much expensive for a DIY geek like me.
+But one beautiful day, I saw this stunning opensource IoT platform. Yes, none other, but #M5StickC.
+This finger sized hardware has built in color OLED 0.96" display, for displaying alphanumeric characters, graphs, logos, animations, and even images. It has an 80mAh battery inside, with USB Type-C charger. An ESP32 pico chip allows a very fast processor with 4MB Flash, WiFi and BLE connectivity options. Also, there is a 6-axis Gyroscope+Accelerometer inside. You will be astonished to know that there is a small mic, an IR LED, RED LED and 3 buttons for user experience, all stuffed with this small gadget.
+For prototyping of your ideas, there are 5 GPIOs for externally connecting sensors, actuators, motors, and displays.
+For simplicity of use, there are bunch of libraries, examples and other cool stuff all open source. So, from now, if you're interested in developing your own Wearable gadget, which works according to your requirements, all you need is an #M5StickC.
+Now come the pricing part. The cheap priced platform is available from their website, and also can be found on AliExpress. You can have the device for only US $9.95. Links for these are given below.
+
+Website: https://m5stack.com/
+AliExpress: https://www.aliexpress.com/item/32985247364.html?spm=a2g0o.productlist.0.0.367f6efaE2hcNm&algo_pvid=6bd51197-65f3-4774-9090-77af5ef6fe2e&algo_expid=6bd51197-65f3-4774-9090-77af5ef6fe2e-11&btsid=d0f3bbe0-dfe6-48a8-913c-d804a72bfb51&ws_ab_test=searchweb0_0,searchweb201602_4,searchweb201603_53
+
+Now comes the fun part. The device supports programming platforms like ArduinoIDE, UIFlow (Blockly, MicroPython).
+After some tinkering and getting myself familiar with the platform and libraries, I decided to make a wristwatch out of this Stick.
+The code snippets helped me a lot in developing my first prototype. And the example code of TFT_Clock is worth appreciating.
+After uploading and testing the code, I came to know that every time I reset the device, it start the clock with the time I uploaded the code.
+Good thing, this finger-sized computer has a built-in RTC. Then again, the example code helped me to use the concept of Real Time Clock, which solved my problem of clock time reset. But the thing to remember in the code that I have written, is that, you have to comment some lines after first upload, so that it does not reprogram the RTC every time, which is not required afterwards.
+Then come the battery drainage problem. Every time the clock is charged to full level, the battery drains very quickly. I am very excited to share, that this tiny little thing also has a Power Management IC AXP192 in it, which controls the power consumption of the #M5StickC. So I decided to reduce the power consumption of my wrist watch with this IC. The example codes have good example about using Sleep functions with this IoT device. According to the documentations, the device consumes less than 10uA of current when in Deep Sleep state. One thing that was not clear in the examples, is that how to wake up the device from deep sleep.
+Let me give you some concept of this. When in Deep Sleep, all parts of the device sleeps, including sensors I/Os, peripherals, etc. But what is still active, is the RTC peripheral buttons for triggering up the device from deep sleep. And the good part is, all the buttons on the #M5StickC are RTC trigger buttons. In my code, I have used the M5_Home_Button for waking up the device from Deep Sleep.
+For better battery consumption controlling, I first controlled the brightness of the OLED Display. I used built in accelerometer to detect when the watch is front of my face. So every time I lift my arm to see the time, the screen light automatically turns ON. And when I lower my arm, the light automatically turns OFF. So now, I saved much battery time in this way.
+The next thing I have done, is when up to some time (10s), when I am not watching for the time, the device enters the DEEP SLEEP. In this way, the battery consumption drops to nearly 0 (<10uA). When I want to see the time, I just press the home button, and the wristwatch starts within a second, and I can see the time.
+To make myself aware of the battery percentage, I used example code for checking the Battery voltages, and converted them into percentage. The display always shows me the amount of battery power remaining.
+Summary:
+With the help of this finger-sized computer, #M5StickC, I have made my own wrist watch, with auto brightness, and DEEP SLEEP functions to enhance the power up time of my watch.
+That's all for this project, hope you like it. :-)
